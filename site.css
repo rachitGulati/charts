@@ -1,0 +1,12 @@
+body{
+  padding: 50px;
+}
+.heading{
+  text-align: center;
+}
+.section{
+  padding: 50px 0;
+}
+.section__heading{
+  text-align: center;
+}
