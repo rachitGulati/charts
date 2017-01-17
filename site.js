@@ -11,8 +11,11 @@ window.onload = function(){
   //Chat for Asymptotic Analysis
   
   var ctx = document.getElementById("asymptoticAnalysis");
+  var ctx1 = document.getElementById("bubbleSortingAnalysis");
+  var ctx2 = document.getElementById("quickSortingAnalysis");
+
   var data = {
-    labels: [1, 2, 3, 4, 5],
+    labels: [1, 2, 3, 4],
       datasets: [
       {
           label: "0(1)",
@@ -64,33 +67,111 @@ window.onload = function(){
           fill: false
       }]
   };
+  
+  var data1 = {
+    labels: [1, 2, 3, 4],
+      datasets: [
+      {
+          label: "Worst Case O(n^2)",
+          function: function(x) { return x*x },
+          borderColor: "rgba(255,99,132,1)",
+          data: [],
+          fill: false
+      },
+      {
+          label: "Average Case O(n^2)",
+          function: function(x) { return x*x },
+          borderColor: "rgba(54, 162, 235, 1)",
+          data: [],
+          fill: false
+      },
+      {
+          label: "Best Case O(n)",
+          function: function(x) { return x },
+          borderColor: "rgba(255, 206, 86, 1)",
+          data: [],
+          fill: false
+      }]
+  };
 
+  var data2 = {
+    labels: [1, 2, 3, 4],
+      datasets: [
+      {
+          label: "Worst Case O(n^2)",
+          function: function(x) { return x*x },
+          borderColor: "rgba(255,99,132,1)",
+          data: [],
+          fill: false
+      },
+      {
+          label: "Average Case O(nlogn)",
+          function: function(x) { return x*Math.log(x) },
+          borderColor: "rgba(54, 162, 235, 1)",
+          data: [],
+          fill: false
+      },
+      {
+          label: "Best Case O(nlogn)",
+          function: function(x) { return x*Math.log(x) },
+          borderColor: "rgba(255, 206, 86, 1)",
+          data: [],
+          fill: false
+      }]
+  };
   Chart.pluginService.register({
-      beforeInit: function(chart) {
-          var data = chart.config.data;
-          for (var i = 0; i < data.datasets.length; i++) {
-              for (var j = 0; j < data.labels.length; j++) {
-                var fct = data.datasets[i].function,
-                    x = data.labels[j],
-                    y = fct(x);
-                  data.datasets[i].data.push(y);
-              }
-          }
-      }
+    beforeInit: function(chart) {
+        var data = chart.config.data;
+        for (var i = 0; i < data.datasets.length; i++) {
+            for (var j = 0; j < data.labels.length; j++) {
+              var fct = data.datasets[i].function,
+                  x = data.labels[j],
+                  y = fct(x);
+                data.datasets[i].data.push(y);
+            }
+        }
+    }
   });
 
   var asymptoticAnalysis = new Chart(ctx, {
-      type: 'line',
-      data: data,
-      options: {
-          scales: {
-              yAxes: [{
-                  ticks: {
-                      beginAtZero:true
-                  }
-              }]
-          }
-      }
+    type: 'line',
+    data: data,
+    options: {
+        scales: {
+            yAxes: [{
+                ticks: {
+                    beginAtZero:true
+                }
+            }]
+        }
+    }
   });
 
+  var bubbleSortingAnalysis = new Chart(ctx1, {
+    type: 'line',
+    data: data1,
+    options: {
+        scales: {
+            yAxes: [{
+                ticks: {
+                    beginAtZero:true
+                }
+            }]
+        }
+    }
+  });
+
+  var bubbleSortingAnalysis = new Chart(ctx2, {
+    type: 'line',
+    data: data2,
+    options: {
+        scales: {
+            yAxes: [{
+                ticks: {
+                    beginAtZero:true
+                }
+            }]
+        }
+    }
+  });
 }
